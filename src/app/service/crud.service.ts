@@ -1,0 +1,33 @@
+import { HttpClient} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, takeLast } from 'rxjs';
+import { Task } from '../model/task';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CrudService {
+
+  serviceURL : string ;
+
+  constructor(private http : HttpClient) { 
+    this.serviceURL = "http://localhost:3000/tasks"
+  }
+
+  addTask(tasks : Task) : Observable<Task> {
+    return this.http.post<Task>(this.serviceURL,tasks);
+  }
+
+  getAllTask() : Observable<Task[]> {
+    return this.http.get<Task[]>(this.serviceURL);
+  }
+
+  deleteTask(tasks : Task) : Observable<Task> {
+    return this.http.delete<Task>(this.serviceURL+'/'+tasks.id);
+  }
+
+  editTask(tasks : Task) : Observable<Task> {
+    return this.http.put<Task>(this.serviceURL+'/'+tasks.id,tasks);
+  }
+
+}
