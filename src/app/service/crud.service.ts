@@ -14,20 +14,20 @@ export class CrudService {
     this.serviceURL = "http://localhost:3000/tasks"
   }
 
-  addTask(tasks : Task) : Observable<Task> {
-    return this.http.post<Task>(this.serviceURL,tasks);
+  addTask(task : Task) : Observable<Task> {
+    return this.http.post<Task>(this.serviceURL,task);
   }
 
   getAllTask() : Observable<Task[]> {
     return this.http.get<Task[]>(this.serviceURL);
   }
 
-  deleteTask(tasks : Task) : Observable<Task> {
-    return this.http.delete<Task>(this.serviceURL+'/'+tasks.id);
+  deleteTask(task : Task) : Observable<Task> {
+    return this.http.delete<Task>(this.serviceURL+'/'+task.id);
   }
 
-  editTask(tasks : Task) : Observable<Task> {
-    return this.http.put<Task>(this.serviceURL+'/'+tasks.id,tasks);
+  editTask(task : Task) : Observable<Task> {
+    return this.http.put<Task>(this.serviceURL+'/'+task.id,task);
   }
 
 }
